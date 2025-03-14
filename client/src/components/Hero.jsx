@@ -12,14 +12,22 @@ import { AppContext } from '../context/AppContext';
 
 const Hero = () => {
 
-    const {setSearchFilter, searchFilter} = useContext(AppContext);
+  const { setSearchFilter, setIsSearched } = useContext(AppContext);
 
-    const titleRef = useRef(null);
-    const locationRef = useRef(null);
+  const titleRef = useRef(null);
+  const locationRef = useRef(null);
 
-    const onSerach = () => {
-    
-    }
+  const onSearch = () => {
+    setSearchFilter({
+      title: titleRef.current.value,
+      location: locationRef.current.value
+    });
+    setIsSearched(true);
+    console.log({
+      title: titleRef.current.value,
+      location: locationRef.current.value
+    });
+  };
 
   return (
     <>
@@ -71,43 +79,26 @@ const Hero = () => {
             }}
           >
             {/* Search Field */}
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                flex: 1,
-              }}
-            >
+            <Box sx={{ display: 'flex', alignItems: 'center', flex: 1 }}>
               <SearchIcon sx={{ color: 'text.secondary', mr: 1 }} />
               <TextField
                 variant="standard"
                 placeholder="Search for jobs"
                 fullWidth
-                InputProps={{
-                  disableUnderline: true,
-                }}
-                ref={titleRef}
+                InputProps={{ disableUnderline: true }}
+                inputRef={titleRef}  // corrected here
               />
             </Box>
 
             {/* Location Field */}
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                flex: 1,
-                ml: { xs: 1, md: 2 },
-              }}
-            >
+            <Box sx={{ display: 'flex', alignItems: 'center', flex: 1, ml: { xs: 1, md: 2 } }}>
               <LocationOnIcon sx={{ color: 'text.secondary', mr: 1 }} />
               <TextField
                 variant="standard"
                 placeholder="Location"
                 fullWidth
-                InputProps={{
-                  disableUnderline: true,
-                }}
-                ref={locationRef}
+                InputProps={{ disableUnderline: true }}
+                inputRef={locationRef}
               />
             </Box>
 
@@ -121,7 +112,7 @@ const Hero = () => {
                 px: { xs: 2, md: 4 },
                 py: { xs: 1, md: 1.5 },
               }}
-              onClick={onSerach}
+              onClick={onSearch}
             >
               Search
             </Button>
@@ -135,7 +126,7 @@ const Hero = () => {
           width: '100%',
           backgroundColor: '#fff',
           py: 3,
-          boxShadow: 1, // subtle shadow around the white container
+          boxShadow: 1,
         }}
       >
         <Container maxWidth="lg">
@@ -148,51 +139,28 @@ const Hero = () => {
               justifyContent: { xs: 'center', md: 'start' },
             }}
           >
-            {/* "Trusted by" text */}
-            <Typography
-              variant="subtitle1"
-              sx={{ fontWeight: 'bold' }}
-            >
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
               Trusted by
             </Typography>
 
-            {/* Example Logos (adjust sources & alt text) */}
-            <Box
-              component="img"
+            <Box component="img"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1200px-Microsoft_logo.svg.png"
-              alt="Microsoft"
-              sx={{ height: 30, objectFit: 'contain' }}
-            />
-            <Box
-              component="img"
+              alt="Microsoft" sx={{ height: 30 }} />
+            <Box component="img"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Walmart_logo.svg/1200px-Walmart_logo.svg.png"
-              alt="Walmart"
-              sx={{ height: 30, objectFit: 'contain' }}
-            />
-            <Box
-              component="img"
+              alt="Walmart" sx={{ height: 30 }} />
+            <Box component="img"
               src="https://lobbymap.org/site//data/001/361/1361822.png"
-              alt="Accenture"
-              sx={{ height: 30, objectFit: 'contain' }}
-            />
-            <Box
-              component="img"
+              alt="Accenture" sx={{ height: 30 }} />
+            <Box component="img"
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuhPfroLWEyj9HXSOW8pLMY_wBvAcbY5bOfg&s"
-              alt="Samsung"
-              sx={{ height: 30, objectFit: 'contain' }}
-            />
-            <Box
-              component="img"
+              alt="Samsung" sx={{ height: 30 }} />
+            <Box component="img"
               src="https://upload.wikimedia.org/wikipedia/commons/d/de/Amazon_icon.png"
-              alt="Amazon"
-              sx={{ height: 30, objectFit: 'contain' }}
-            />
-            <Box
-              component="img"
+              alt="Amazon" sx={{ height: 30 }} />
+            <Box component="img"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Adobe_Corporate_logo.svg/1280px-Adobe_Corporate_logo.svg.png"
-              alt="Adobe"
-              sx={{ height: 30, objectFit: 'contain' }}
-            />
+              alt="Adobe" sx={{ height: 30 }} />
           </Box>
         </Container>
       </Box>
