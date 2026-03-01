@@ -1,0 +1,7 @@
+<svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="300" rx="18" fill="#ede9fe"/>
+  <circle cx="110" cy="150" r="70" fill="#7c3aed"/>
+  <circle cx="220" cy="150" r="70" fill="#8b5cf6"/>
+  <circle cx="330" cy="150" r="70" fill="#a78bfa"/>
+  <text x="52" y="265" font-size="24" font-family="Arial, sans-serif" fill="#4c1d95" font-weight="700">Trusted Recruiters</text>
+</svg>

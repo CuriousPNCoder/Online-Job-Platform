@@ -10,6 +10,12 @@ declare global {
 
     interface Request {
       user?: UserPayload;
+      file?: {
+        filename: string;
+        path: string;
+        mimetype: string;
+        size: number;
+      };
     }
   }
 }
