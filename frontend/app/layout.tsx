@@ -3,6 +3,7 @@ import "./globals.css";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingHelp } from "@/components/ui/FloatingHelp";
 
 export const metadata: Metadata = {
   title: "Online Job Portal",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
           <Navbar />
           {children}
           <Footer />
+          <FloatingHelp />
         </AppProviders>
       </body>
     </html>
