@@ -27,8 +27,8 @@ export const Footer = (): JSX.Element => {
         <div>
           <h4 className="text-sm font-semibold uppercase tracking-wide text-brand-800">Support</h4>
           <ul className="mt-3 space-y-2 text-sm text-slate-600">
-            <li>Email: support@onlinejobportal.com</li>
-            <li>Help Desk: +91 90000 12345</li>
+            <li>Email: demo@demo.com</li>
+            <li>Contact: +91 XXXX XXXXXX</li>
             <li>Mon-Fri: 9:00 AM - 6:00 PM</li>
           </ul>
         </div>
