@@ -1,0 +1,8 @@
+
+> online-job-portal-backend@1.0.0 dev
+> ts-node-dev --respawn --transpile-only src/server.ts
+
+[INFO] 09:27:29 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.3)
+Error: querySrv ENOTFOUND _mongodb._tcp.cluster0.aqn4oc8.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+[ERROR] 09:27:30 Error: querySrv ENOTFOUND _mongodb._tcp.cluster0.aqn4oc8.mongodb.net

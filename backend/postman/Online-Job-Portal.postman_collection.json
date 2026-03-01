@@ -1,0 +1,152 @@
+{
+  "info": {
+    "_postman_id": "e9ec0ca2-b7d5-4799-8f0e-4ac5ab8af4b2",
+    "name": "Online Job Portal Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "jobSeekerToken", "value": "" },
+    { "key": "recruiterToken", "value": "" },
+    { "key": "adminToken", "value": "" },
+    { "key": "jobId", "value": "" },
+    { "key": "applicationId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Job Seeker Flow",
+      "item": [
+        {
+          "name": "Register Job Seeker",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/auth/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Job Seeker\",\n  \"email\": \"jobseeker@example.com\",\n  \"password\": \"Password123\",\n  \"role\": \"jobseeker\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login Job Seeker",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"jobseeker@example.com\",\n  \"password\": \"Password123\"\n}"
+            }
+          }
+        },
+        { "name": "Search Jobs", "request": { "method": "GET", "url": "{{baseUrl}}/jobs?keyword=node&page=1&limit=10" } },
+        {
+          "name": "Apply Job",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{jobSeekerToken}}" }],
+            "url": "{{baseUrl}}/jobs/{{jobId}}/apply"
+          }
+        },
+        {
+          "name": "My Applications",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{jobSeekerToken}}" }],
+            "url": "{{baseUrl}}/me/applications?page=1&limit=10"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recruiter Flow",
+      "item": [
+        {
+          "name": "Register Recruiter",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/auth/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Recruiter\",\n  \"email\": \"recruiter@example.com\",\n  \"password\": \"Password123\",\n  \"role\": \"recruiter\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login Recruiter",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"recruiter@example.com\",\n  \"password\": \"Password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Create Job",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{recruiterToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{baseUrl}}/recruiter/jobs",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Backend Developer\",\n  \"description\": \"Design and build REST APIs.\",\n  \"skillsRequired\": [\"Node.js\", \"TypeScript\", \"MongoDB\"],\n  \"location\": \"Remote\",\n  \"salaryRange\": { \"min\": 60000, \"max\": 90000, \"currency\": \"USD\" },\n  \"category\": \"Engineering\",\n  \"jobType\": \"Full-time\"\n}"
+            }
+          }
+        },
+        {
+          "name": "View Applicants",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{recruiterToken}}" }],
+            "url": "{{baseUrl}}/recruiter/jobs/{{jobId}}/applications?page=1&limit=10"
+          }
+        },
+        {
+          "name": "Update Application Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{recruiterToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": "{{baseUrl}}/applications/{{applicationId}}/status",
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"shortlisted\",\n  \"remarks\": \"Good profile\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Flow",
+      "item": [
+        {
+          "name": "Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@jobportal.com\",\n  \"password\": \"Admin@123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Summary Report",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": "{{baseUrl}}/admin/reports/summary"
+          }
+        }
+      ]
+    }
+  ]
+}
